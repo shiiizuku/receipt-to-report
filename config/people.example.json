@@ -1,0 +1,66 @@
+{
+  "officers": [
+    {
+      "name": "FIRST COLLECTING OFFICER",
+      "title": "Cashier",
+      "username": "officer1",
+      "cashier": true
+    },
+    {
+      "name": "SECOND COLLECTING OFFICER",
+      "title": null,
+      "username": "officer2"
+    }
+  ],
+  "signatories": [
+    {
+      "key": "mrdc.prepared",
+      "report": "mrdc",
+      "label": "Prepared and Submitted by:",
+      "name": "NAME OF CHIEF, CASHIERING SECTION",
+      "title": "Chief, Cashiering Section",
+      "sort": 1
+    },
+    {
+      "key": "mrdc.noted",
+      "report": "mrdc",
+      "label": "Noted by:",
+      "name": "NAME OF NOTING OFFICER",
+      "title": "Title of noting officer",
+      "sort": 2
+    },
+    {
+      "key": "sdc.prepared",
+      "report": "sdc",
+      "label": "Prepared by:",
+      "name": "Name of preparer",
+      "title": "Title",
+      "sort": 1
+    },
+    {
+      "key": "sdc.reviewed",
+      "report": "sdc",
+      "label": "Reviewed by:",
+      "name": "Name of reviewer",
+      "title": "Title",
+      "sort": 2
+    },
+    {
+      "key": "sdc.final",
+      "report": "sdc",
+      "label": "Final Reviewed by:",
+      "name": "Name of final reviewer",
+      "title": "Title",
+      "sort": 3
+    },
+    {
+      "key": "sdc.signed",
+      "report": "sdc",
+      "label": "Signed by:",
+      "name": "Name of signatory",
+      "title": "Title",
+      "sort": 4
+    }
+  ],
+  "openingBalances": []
+}

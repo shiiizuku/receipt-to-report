@@ -1,0 +1,27 @@
+# dependencies and build output
+node_modules
+.next
+*.tsbuildinfo
+next-env.d.ts
+
+# secrets and local data: never commit
+.env
+.env.*
+!.env.example
+backups
+exports
+
+# the agency's own workbooks, PDFs and report folders
+*.xlsx
+*.xlsm
+*.xls
+*.pdf
+Report of Collection & Deposits/
+
+# editor and tool folders
+.claude
+.vscode
+.idea
+
+# real names and client lists: local only (copy the .example.json files to start your own)
+config/*.local.json

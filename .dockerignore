@@ -1,0 +1,11 @@
+node_modules
+.next
+.env
+.git
+exports
+*.xlsx
+*.xlsm
+*.pdf
+Report of Collection & Deposits
+
+backups

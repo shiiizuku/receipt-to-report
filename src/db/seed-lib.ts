@@ -51,9 +51,11 @@ export async function seedAll(db: SeedDb, password: string, opts: SeedOptions) {
     await db.insert(payors).values(opts.payors.slice(i, i + 200).map((name) => ({ name }))).onConflictDoNothing();
   }
 
+  // The cashier heads the Statement of Deposited Collections: the officer flagged in the config, else the first.
+  const cashierName = (people.officers.find((o) => o.cashier) ?? people.officers[0]).name;
   await db
     .insert(officers)
-    .values(people.officers.map((o) => ({ name: o.name, title: o.title, isCashier: !!o.cashier })))
+    .values(people.officers.map((o) => ({ name: o.name, title: o.title, isCashier: o.name === cashierName })))
     .onConflictDoNothing();
   const offs = await db.select().from(officers);
   const hash = await bcrypt.hash(password, opts.hashRounds ?? 12);
@@ -71,7 +73,9 @@ export async function seedAll(db: SeedDb, password: string, opts: SeedOptions) {
 
   // Collections carried over from the last report, if the config lists any.
   for (const ob of people.openingBalances) {
-    const officer = offs.find((o) => o.name === ob.officer);
+    // The officer may be given by name or by username.
+    const byUsername = people.officers.find((o) => o.username === ob.officer)?.name;
+    const officer = offs.find((o) => o.name === ob.officer || o.name === byUsername);
     const [fund] = await db.select().from(funds).where(eq(funds.code, ob.fund));
     if (!officer || !fund) throw new Error(`Opening balance refers to an unknown officer or fund: ${ob.officer} / ${ob.fund}`);
     await db.insert(openingBalances).values({ officerId: officer.id, fundId: fund.id, asOf: ob.asOf, amount: ob.amount }).onConflictDoNothing();
